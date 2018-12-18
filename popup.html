@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
+    <meta charset="UTF-8">
+    <title>penser pop-up</title>
+    <style>
+        div.emoji {
+            text-align: right;
+            font-size: 20px;
+            line-height: .75em;
+        }
+        div.title {
+            font-family: Lato, sans-serif;
+            font-size: 12px;
+            line-height: 2em;
+        }
+        div.button {
+            line-height: 2em;
+        }
+    </style>
+    <script src="script.js"></script>
+</head>
+
+<body style="width:200px">
+    <div class="emoji">🤔</div>
+    <form action="https://ide50-janwcho.cs50.io:8080/post" method="post" id="popupPost" name="popupPost">
+        <div class="title">What's on your mind?:</div>
+        <div>
+            <textarea class="form-control" rows="6" cols="30" maxlength="280" type="text" id="post" name="post" placeholder="ruminate here..." ></textarea>
+        </div>
+        <div>
+            <input class="form-control" type="text" id="tags" name="tags" placeholder="enter tags"/>
+        </div>
+        <input type="submit" id="send" value="Submit">
+    </form>
+</body>
+</html>
