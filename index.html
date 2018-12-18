@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block main %}
+<br>
+  <div class="container justify-content-around">
+    <div class="row">
+    <h6>sort:</h6>
+      <div class="col-sm">
+        <div id="sorts" class="button-group"> <button class="button is-checked" type="button" data-sort-by="date">date</button>
+          <button class="button" data-sort-by="tag">tag</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+  {% for post in posts %}
+    <div class="article">
+      <div class="articleTitle">{{ post.tags }}</div>
+        <div class="articleDate">{{ post.day }} {{ post.date }} {{ post.time }}</div>
+        <br>
+        <p>{{ post.post }}</p>
+    </div>
+  {% endfor %}
+  </section>
+{% endblock %}
