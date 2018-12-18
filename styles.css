@@ -1,0 +1,75 @@
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+header {
+  background: darkorange;
+  height: 95px;
+}
+
+h1 {
+  font-family: Lato;
+  text-align: center;
+  color: white;
+  line-height: 55px;
+  margin: 0;
+}
+
+h2 {
+  font-family: Lato;
+  text-align: center;
+  color: lightsteelblue;
+  line-height: 25px;
+  font-size: 1.25em;
+  margin: 0;
+}
+
+h6 {
+  line-height: 25px;
+}
+
+p {
+  font-size: 1.1em;
+  text-align: left;
+  padding: 5px;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+section {
+  padding: 0;
+  margin: 5;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.article {
+  background: lightsteelblue;
+  border-radius: 4px;
+  padding: 15px;
+  width: 275px;
+  height: 275px;
+  margin: 5px;
+
+  color: darkslategray;
+  font-size: .75em;
+}
+
+.articleDate {
+  font-size: 1em;
+}
+
+.articleTitle {
+  font-size: 1.5em;
+  font-weight: bold;
+}
