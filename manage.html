@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    manage
+{% endblock %}
+
+{% block main %}
+<br>
+  <div class="container justify-content-around">
+    <div class="row">
+    <h6>sort:</h6>
+      <div class="col-sm">
+        <div id="sorts" class="button-group"> <button class="button is-checked" type="button" data-sort-by="date">date</button>
+          <button class="button" data-sort-by="tag">tag</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+  {% for post in posts %}
+    <div class="article">
+      <div class="articleTitle">{{ post.tags }}</div>
+        <div class="articleDate">{{ post.day }} {{ post.date }} {{ post.time }}</div>
+        <div class="checkbox">Check to delete: <input type="checkbox" id="checkDelete"></div>
+        <br>
+        <p>{{ post.post }}</p>
+    </div>
+  {% endfor %}
+  </section>
+  <div align="center">
+    <button class="delete" name="delete">Delete checked posts</button>
+    <p style="text-align:center" style="font-size:10">(Careful! once you click, there's no turning back!)</p>
+  </div>
+{% endblock %}
