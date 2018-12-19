@@ -51,10 +51,14 @@ def login_required(f):
     return decorated_function
 
 
-@app.route("/manage")
+@app.route("/manage", methods=["GET", "POST"])
 @login_required
 def manage():
     """Render manage page"""
+
+    if request.method == "POST":
+        db.execute("DELETE FROM memos WHERE postID=:postID", postID=request.form.get("postID"))
+        return redirect("/", code=302)
 
     posts = db.execute("SELECT * FROM memos WHERE id=:id", id=session["user_id"])
     for i in range(0, len(posts)):
@@ -63,8 +67,9 @@ def manage():
         day = posts[i]["day"]
         date = posts[i]["date"]
         time = posts[i]["time"]
+        postID = posts[i]["postID"]
 
-    return render_template("manage.html", posts=posts)
+        return render_template("manage.html", posts=posts)
 
 
 @app.route("/")
@@ -90,7 +95,7 @@ def post():
 
     if request.method == "POST":
         if not request.form.get("post"):
-            return("you can't leave this blank", 400)
+            return("you forgot to write something", 400)
 
         else:
             # Record post & tags in memos table
@@ -105,6 +110,7 @@ def post():
 
 
 @app.route("/popup", methods=["GET", "POST"])
+@login_required
 def popup():
     """Post via extension"""
 
