@@ -34,7 +34,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure to use SQLite database
-db = SQL("sqlite:///finalproject.db")
+db = SQL("sqlite:///penser.db")
 
 
 def login_required(f):
@@ -56,10 +56,33 @@ def login_required(f):
 def manage():
     """Render manage page"""
 
+    # Sort posts by tags/title
+    if request.args.get("sortby") == "tags":
+        posts = db.execute("SELECT * FROM memos WHERE id=:id ORDER BY tags", id=session["user_id"])
+        for i in range(0, len(posts)):
+            post = posts[i]["post"]
+            tags = posts[i]["tags"]
+            day = posts[i]["day"]
+            date = posts[i]["date"]
+            time = posts[i]["time"]
+
+        return render_template("manage.html", posts=posts)
+
+    # Delete post by postID
     if request.method == "POST":
         db.execute("DELETE FROM memos WHERE postID=:postID", postID=request.form.get("postID"))
-        return redirect("/", code=302)
+        posts = db.execute("SELECT * FROM memos WHERE id=:id", id=session["user_id"])
+        for i in range(0, len(posts)):
+            post = posts[i]["post"]
+            tags = posts[i]["tags"]
+            day = posts[i]["day"]
+            date = posts[i]["date"]
+            time = posts[i]["time"]
+            postID = posts[i]["postID"]
 
+        return render_template("manage.html", posts=posts)
+
+    # Render posts with delete buttons
     posts = db.execute("SELECT * FROM memos WHERE id=:id", id=session["user_id"])
     for i in range(0, len(posts)):
         post = posts[i]["post"]
@@ -69,14 +92,27 @@ def manage():
         time = posts[i]["time"]
         postID = posts[i]["postID"]
 
-        return render_template("manage.html", posts=posts)
+    return render_template("manage.html", posts=posts)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
     """Render home page"""
 
+    # Sort posts by tags/title
+    if request.args.get("sortby") == "tags":
+        posts = db.execute("SELECT * FROM memos WHERE id=:id ORDER BY tags", id=session["user_id"])
+        for i in range(0, len(posts)):
+            post = posts[i]["post"]
+            tags = posts[i]["tags"]
+            day = posts[i]["day"]
+            date = posts[i]["date"]
+            time = posts[i]["time"]
+
+        return render_template("index.html", posts=posts)
+
+    # Render all posts
     posts = db.execute("SELECT * FROM memos WHERE id=:id", id=session["user_id"])
     for i in range(0, len(posts)):
         post = posts[i]["post"]
@@ -93,30 +129,10 @@ def index():
 def post():
     """Post on site"""
 
+    # Check user wrote a post
     if request.method == "POST":
         if not request.form.get("post"):
             return("you forgot to write something", 400)
-
-        else:
-            # Record post & tags in memos table
-            x = datetime.datetime.now()
-            db.execute("INSERT INTO memos (id, post, tags, day, date, time) VALUES (:id, :p, :t, :d, :date, :time)",
-                       id=session["user_id"], p=request.form.get("post"), t=request.form.get("tags"), d=x.strftime("%a"), date=x.strftime("%x"), time=x.strftime("%X"))
-
-            return redirect("/", code=302)
-
-    else:
-        return render_template("post.html")
-
-
-@app.route("/popup", methods=["GET", "POST"])
-@login_required
-def popup():
-    """Post via extension"""
-
-    if request.method == "POST":
-        if not request.form.get("post"):
-            return("you can't leave this blank", 400)
 
         else:
             # Record post & tags in memos table
