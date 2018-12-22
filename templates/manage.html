@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    delete
+{% endblock %}
+
+{% block main %}
+<br>
+  <div class="container justify-content-around">
+    <div class="row">
+    <h6>sort by:</h6>
+      <div class="col-sm">
+        <form action="/manage" method="get" style="display:inline">
+          <input type="hidden" name="sortby" value="date">
+          <button class="button">date</button>
+        </form>
+        <form action="/manage" method="get" style="display:inline">
+          <input type="hidden" name="sortby" value="tags">
+          <button class="button">tags/title</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <section>
+  {% for post in posts %}
+    <form action="/manage" onclick="return confirm('Are you sure you want to delete this post?')" method="post">
+      <input type="hidden" id="postID" name="postID" value="{{ post.postID }}">
+      <div class="article">
+        <div class="articleTitle">{{ post.tags }}</div>
+        <div class="articleDate">{{ post.day }} {{ post.date }} {{ post.time }}</div>
+        <button class="btn btn-warning" type="submit">delete</button>
+        <br>
+        <p>{{ post.post }}</p>
+      </div>
+    </form>
+  {% endfor %}
+  </section>
+{% endblock %}

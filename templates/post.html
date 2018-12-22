@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    post
+{% endblock %}
+
+{% block main %}
+<br>
+    <form action="/post" method="post">
+        <div class="form-group row justify-content-center">
+            <div class="col-sm-3">
+                <textarea class="form-control" id="post" rows="10" maxlength="280" placeholder="write something" name="post" type="text"></textarea>
+            </div>
+        </div>
+        <div class="form-group row justify-content-center">
+            <div class="col-sm-3">
+                <input class="form-control" id="tags" name="tags" placeholder="enter tags/title" type="text"/>
+            </div>
+        </div>
+        <br>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">post</button>
+        </div>
+    </form>
+{% endblock %}

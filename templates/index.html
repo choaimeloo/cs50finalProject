@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block main %}
+<br>
+  <div class="container justify-content-around">
+    <div class="row">
+    <h6>sort by:</h6>
+      <div class="col-sm">
+        <form action="/" method="get" style="display:inline">
+          <input type="hidden" name="sortby" value="date">
+          <button class="button">date</button>
+        </form>
+        <form action="/" method="get" style="display:inline">
+          <input type="hidden" name="sortby" value="tags">
+          <button class="button">tags/title</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <section>
+  {% for post in posts %}
+    <div class="article">
+      <div class="articleTitle">{{ post.tags }}</div>
+      <div class="articleDate">{{ post.day }} {{ post.date }} {{ post.time }}</div>
+        <br>
+      <p>{{ post.post }}</p>
+    </div>
+  {% endfor %}
+  </section>
+{% endblock %}
