@@ -1,0 +1,16 @@
+{
+  "name": "penser for cs50:",
+  "version": "1.0",
+  "description": "penser popup",
+  "permissions": [
+    "https://ide.cs50.io/janwcho/*"
+  ],
+  "icons": {
+    "16": "thinkemoji.png"
+  },
+  "browser_action": {
+    "default_title": "penser_popup",
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}
