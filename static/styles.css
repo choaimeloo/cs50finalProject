@@ -1,0 +1,82 @@
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+header {
+  background: midnightblue;
+  height: 95px;
+}
+
+h1 {
+  font-family: Lato;
+  text-align: center;
+  color: orangered;
+  line-height: 55px;
+  margin: 0;
+}
+
+h2 {
+  font-family: Lato;
+  text-align: center;
+  color: mintcream;
+  line-height: 25px;
+  font-style: oblique;
+  font-size: 1.25em;
+  margin: 0;
+}
+
+h6 {
+  line-height: 25px;
+}
+
+p {
+  font-size: 1.1em;
+  text-align: left;
+  padding: 5px;
+}
+
+section {
+  padding: 0;
+  margin: 5;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+textarea {
+  resize: none;
+}
+
+.article {
+  background: mintcream;
+  border-width: thin;
+  border-radius: 4px;
+  border-style: dotted;
+  padding: 15px;
+  width: 275px;
+  height: 275px;
+  margin: 5px;
+
+  color: darkslategray;
+  font-size: .75em;
+}
+
+.articleDate {
+  font-size: 1em;
+}
+
+.articleTitle {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+}
