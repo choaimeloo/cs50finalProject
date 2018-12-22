@@ -7,3 +7,5 @@ All files required are saved in these four folders: final files, penser popup, s
 "static" contains the css & the emoji image png file.
 "templates" contains all html files.
 "penser popup" contains the files required to make the chrome extension popup.
+
+2-minute screencast demonstrating the app posted on YouTube here: https://youtu.be/tHeP3K2lK9w
